@@ -1,0 +1,27 @@
+import java.util.Stack;
+
+public class SimplifyPath {
+    public String simplifyPath(String path) {
+        String[] tokens = path.split("/");
+        Stack<String> stack = new Stack<>();
+
+        for (String token : tokens) {
+            //skip the empty or current directory
+            if (token.isEmpty() || token.equalsIgnoreCase(".")) {
+                continue;
+            }
+            if (token.equalsIgnoreCase("..")) {
+                if (!stack.isEmpty()) {
+                    stack.pop();
+                }
+            } else {
+                stack.push(token);
+            }
+        }
+        StringBuilder result = new StringBuilder();
+        while (!stack.isEmpty()) {
+             result.insert(0, "/" + stack.pop());
+        }
+        return result.length() == 0 ? "/" : result.toString();
+    }
+}
