@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class BuildArrayWithStack {
+    public List<String> buildArray(int[] target, int n) {
+        // it will start from 1 to n
+        int stream = 1;
+        List<String> result = new ArrayList<>();
+        int i = 0;
+        //stream cannot be empty it will be proceeded till end elemnt only
+        while (i < target.length && stream <= n) {
+            //when we had an element from stream we need to push
+            result.add("Push");
+            if (stream == target[i]) {
+                i++;
+            } else {
+                result.add("Pop");
+            }
+            stream++;
+        }
+        return result;
+    }
+}
