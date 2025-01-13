@@ -1,0 +1,25 @@
+/**Input: s = "][]["
+Output: 1
+Explanation: You can make the string balanced by swapping index 0 with index 3.
+The resulting string is "[[]]". **/
+ **letcode link : https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/description **
+
+import java.util.Stack;
+
+public class MinimumSwaps {
+    public int minSwaps(String s) {
+        Stack<Character> stack = new Stack<>();
+
+        //traverse the string
+        for (char ch : s.toCharArray()) {
+            if (ch == '[') {
+                stack.push(ch);// push opening brackets to stack
+            } else if (!stack.isEmpty()) {
+                stack.pop(); // if stack is not empty and does not have an opening bracket then it mist be closing bracket which makes it balanced.
+            }
+        }
+        // The remaining elements in the stack are unmatched
+        return (stack.size() + 1) / 2;
+    }
+
+}
