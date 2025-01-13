@@ -1,0 +1,28 @@
+
+ /** Example 1:
+
+Input: s = "())"
+Output: 1 **/
+ /** Leetcode link : https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/description/ **/
+
+import java.util.Stack;
+
+public class MinimumAddParenthesisValid {
+    public int minAddToMakeValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        int open = 0;
+        // traverse through string
+        for (char ch : s.toCharArray()) {
+            if (ch == '(') {
+                stack.push(ch);
+            } else if (!stack.isEmpty()) {
+                // it means we have a closing bracket which can be balanced
+                stack.pop();
+            } else {
+                // in case stack is empty and we have a closing bracket in that case we would need opening bracket
+                open++;
+            }
+        }
+        return open + stack.size();
+    }
+}
